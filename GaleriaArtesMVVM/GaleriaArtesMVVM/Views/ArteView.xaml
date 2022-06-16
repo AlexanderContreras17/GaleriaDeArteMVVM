@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ViewModels="clr-namespace:GaleriaArtesMVVM.ViewModels"
+             x:Class="GaleriaArtesMVVM.Views.ArteView">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Agregar Nuevo" Command="{Binding CambiarVistaCommand}"
+                     CommandParameter="agregar"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.BindingContext>
+        <ViewModels:ArteViewModel x:Name="avm"></ViewModels:ArteViewModel>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <CollectionView ItemsSource="{Binding ListaArte}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference avm}, Path=VerDetallesCommand}" CommandParameter="{Binding .}"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                         <Image Source="{Binding Foto}" Grid.RowSpan="2"></Image>
+                        <StackLayout Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Column="1">
+                            <Label Text="{Binding Titulo}" FontSize="Title"></Label>
+                            <Label Text="{Binding Artista}" FontSize="Subtitle" VerticalOptions="Center" HorizontalOptions="EndAndExpand"></Label>
+                        </StackLayout>
+                        <Label Grid.Row="1" Text="{Binding Descripcion}" Grid.Column="1"></Label>
+                        <StackLayout Grid.Row="2" Orientation="Horizontal" Grid.ColumnSpan="2">
+                            <Button Text="Eliminar" 
+                                    Command="{Binding Source={x:Reference avm}, Path=EliminarCommand}" CommandParameter="{Binding .}"></Button>
+                            <Button Text="Modificar"
+                                    Command="{Binding Source={x:Reference avm}, Path=ModificarCommand}" CommandParameter="{Binding .}"></Button>
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ScrollView>
+</ContentPage>

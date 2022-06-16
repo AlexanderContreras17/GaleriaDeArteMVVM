@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GaleriaArtesMVVM.Views.AgregarArteView"
+             >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Listo" Command="{Binding AgregarCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout Margin="10">
+            <Label
+                HorizontalOptions="Center"
+                FontSize="Title" Margin="0,10,0,10">Agregar Nueva Pieza de Arte</Label>
+            <Label>Título: </Label>
+            <Entry Text="{Binding Arte.Titulo}"></Entry>
+            <Label Text="Foto"></Label>
+            <Entry Text="{Binding Arte.Foto}"></Entry>
+            <Label>Tipo:</Label>
+            <Entry Text="{Binding Arte.Tipo}"></Entry>
+            <Label>Descripcion:</Label>
+            <Entry Text="{Binding Arte.Descripcion}"></Entry>
+            <Label>Fecha:</Label>
+            <Entry Text="{Binding Arte.Fecha}"></Entry>
+            <Label>Artista:</Label>
+            <Entry Text="{Binding Arte.Artista}"></Entry>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
